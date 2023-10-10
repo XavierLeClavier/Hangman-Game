@@ -9,6 +9,7 @@ bool foundword;
     char tranche[] = {"t", "r", "a", "n", "c", "h", "e"};
     char grele[] = {"g", "r", "e", "l", "e"};
     char masse[] = {"m", "a", "s", "s", "e"};
+    char dessin[] = {"d", "e", "s", "s", "i", "n"};
 
     list_of_words[0] = tissu;
     list_of_words[1] = tranche;
