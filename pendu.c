@@ -1,35 +1,44 @@
-#include <stdio.h>
-int main();
+#include<stdlib.h>
+#include<time.h>
+int main(); {
 
 int lives;
 bool foundword;
-    char words[] = {"tissu", "tranche", "grele", "masse", "dessin", "portable", "trompette", "page", "fourmi", "cartouche", "pain"};
-    int list_of_words[3];
-    char tissu[] = {"t", "i", "s", "s", "u"};
-    char tranche[] = {"t", "r", "a", "n", "c", "h", "e"};
-    char grele[] = {"g", "r", "e", "l", "e"};
-    char masse[] = {"m", "a", "s", "s", "e"};
-    char dessin[] = {"d", "e", "s", "s", "i", "n"};
+char words[] = {"tissu", "tranche", "grele", "masse", "dessin", "portable", "trompette", "page", "fourmi", "cartouche", "pain"};
+int list_of_words[3];
+char tissu[] = {"t", "i", "s", "s", "u"};
+char tranche[] = {"t", "r", "a", "n", "c", "h", "e"};
+char grele[] = {"g", "r", "e", "l", "e"};
+char masse[] = {"m", "a", "s", "s", "e"};
+char dessin[] = {"d", "e", "s", "s", "i", "n"};
 
-    list_of_words[0] = tissu;
-    list_of_words[1] = tranche;
-    list_of_words[2] = grele;
+list_of_words[0] = tissu;
+list_of_words[1] = tranche;
+list_of_words[2] = grele;
+list_of_words[3] = masse;
+list_of_words[4] = dessin;
 
-    // Access and print the elements of the list of lists
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < sizeof(list_of_lists[i]) / sizeof(int); j++) {
-            printf("%d ", list_of_lists[i][j]);
-        }
-        printf("\n");
-    }
-
-    return 0;
-}
 foundword = False;
 lives = 7;
 
-word =
+int random_num;
+srand(time(NULL)); // seed the random number generator with the current time
+random_num = rand() % 5; // generate a random number between 0 and 4
+char divword = list_of_words[random_num];
+char word = words[random_num];
 
 while (foundword == False and lives > 0){
-    printf("Insérez une lettre");
+    int length = sizeof(list_of_words[random_num]) / sizeof(int);
+    char wordadvancement[length];
+    bool foundletters[length];
+    for (int i = 0; i < length; i++) {
+        foundletters[i] = False;
+    }
+    for (int i = 0; i < length; i++) {
+        wordadvancement[i] = "_";
+    }
+    
+        printf("Insérez une lettre");
+    }
+return 0;
 }
