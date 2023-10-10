@@ -8,6 +8,7 @@ bool foundword;
     char tissu[] = {"t", "i", "s", "s", "u"};
     char tranche[] = {"t", "r", "a", "n", "c", "h", "e"};
     char grele[] = {"g", "r", "e", "l", "e"};
+    char masse[] = {"m", "a", "s", "s", "e"};
 
     list_of_words[0] = tissu;
     list_of_words[1] = tranche;
@@ -29,5 +30,5 @@ lives = 7;
 word =
 
 while (foundword == False and lives > 0){
-    printf("")
+    printf("Insérez une lettre");
 }
