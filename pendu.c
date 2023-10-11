@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <time.h>
+#include <string.h>
 
 int main() {
     int lives;
@@ -37,10 +38,15 @@ int main() {
             foundletters[i] = false;
         }
         for (int i = 0; i < length; i++) {
-            wordadvancement[i] = '_';
+            if (foundletters[i] == true){
+                wordadvancement[i] = divword[i];
+            }
+            else if (foundletters[i] == false){
+                wordadvancement[i] = '_';
+            }
         }
 
-        printf("Insérez une lettre: ");
+        printf("%c \nInsérez une lettre: ", wordadvancement);
         char letter;
         scanf(" %c", &letter);
         for (int i = 0; i < length; i++) {
@@ -48,7 +54,7 @@ int main() {
                 foundletters[i] = true;
             }
        
-    }
+        }
     return 0;
 }
 }
