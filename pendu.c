@@ -43,7 +43,7 @@ int main() {
         //this loops until either the word is found or lives have ran out
         printf("%s \nInsérez une lettre: ", wordadvancement);
         scanf(" %s", &letter);
-        printf("%s \n", word);
+        // printf("%s \n", word);
         for (int i = 0; i < length; i++) 
         {
             if (divword[i] == letter||divword[i]=='\0') 
@@ -56,7 +56,7 @@ int main() {
         {
             lives = lives-1;
         }
-
+        // printf("etape 1");
         //the advancement is always recalculated
         for (int i = 0; i < length; i++) 
         {
@@ -69,23 +69,22 @@ int main() {
                 wordadvancement[i] = '_';
             }
         }
+        // printf("etape 2");
         foundword=true;
-        while (foundword == true) //this does not stop once completed!!!!!
+        for(int i=0; i<length; i++)
         {
-            for(int i=0; i<length; i++)
+            if (foundletters[i] == false)
             {
-                if (foundletters[i] == false)
-                {
-                    foundword=false;
-                }
+                foundword=false;
             }
         }
 
+        // printf("etape 3");
         foundthisturn=false;
-        printf("end turn");
+        // printf("end turn");
     }
 
-    printf("fin de la boucle");
+    // printf("fin de la boucle");
     if (lives <= 0)
     {
         printf("Vous avez perdu");
