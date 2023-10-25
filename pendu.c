@@ -6,93 +6,107 @@
 
 int main() {
     int lives;
-    bool foundword, foundthisturn;
-    char words[5][10] = {"tissu", "tranche", "grele", "masse", "dessin", "portable", "trompette", "page", "fourmi", "cartouche", "pain"};
+    bool foundword, foundthisturn, play = true;
+
+    char words[15][10] = {"tissu", "tranche", "grele", "masse", "dessin", "portable", "trompette", "page", "fourmi", "cartouche", "pain"};
     char *list_of_words[5];
-    char tissu[6][1] = {'t', 'i', 's', 's', 'u', '\0'};
-    char tranche[8][1] = {'t', 'r', 'a', 'n', 'c', 'h', 'e', '\0'};
-    char grele[6][1] = {'g', 'r', 'e', 'l', 'e', "\0"};
-    char masse[6][1] = {'m', 'a', 's', 's', 'e', '\0'};
-    char dessin[7][1] = {'d', 'e', 's', 's', 'i', 'n', '\0'};
-
-    list_of_words[0] = tissu;
-    list_of_words[1] = tranche;
-    list_of_words[2] = grele;
-    list_of_words[3] = masse;
-    list_of_words[4] = dessin;
-
-    foundword = false;
-    lives = 7;
-
-    int random_num;
-    srand(time(NULL)); // seed the random number generator with the current time
-    random_num = rand() % 5; // generate a random number between 0 and 4
-    char *divword = list_of_words[random_num];
-    char *word = words[random_num];
-    char letter;
-    int length = strlen(list_of_words[random_num]);
-    char wordadvancement[length];//creates a lists that will start empty and gradually fill with letters
-    bool foundletters[length];//tells if the letter related to a given indexnis found
-
-    for (int i = 0; i < length; i++) 
+    char *tissu[6][1] = {'t', 'i', 's', 's', 'u', '\0'};
+    char *tranche[8][1] = {'t', 'r', 'a', 'n', 'c', 'h', 'e', '\0'};
+    char *grele[6][1] = {'g', 'r', 'e', 'l', 'e', "\0"};
+    char *masse[6][1] = {'m', 'a', 's', 's', 'e', '\0'};
+    char *dessin[7][1] = {'d', 'e', 's', 's', 'i', 'n', '\0'};
+    
+    // Assign words from the 'words' array to 'list_of_words'
+    list_of_words[0] = "tissu"; // "tissu"
+    list_of_words[1] = "tranche"; // "tranche"
+    list_of_words[2] = "grele"; // "grele"
+    list_of_words[3] = "masse"; // "masse"
+    list_of_words[4] = words[4]; // "dessin"
+    while(play == true)
     {
-        foundletters[i] = false;
-    }
-    while (foundword == false && lives > 0) 
-    {
-        //this loops until either the word is found or lives have ran out
-        printf("%s \nInsérez une lettre: ", wordadvancement);
-        scanf(" %s", &letter);
-        // printf("%s \n", word);
+        foundword = false;
+        lives = 7;
+        char list_of_found_letters[7][1];
+
+        int random_num;
+        srand(time(NULL)); // random number
+        random_num = rand() % 5; // generate a random number between 0 and 4
+        char *divword = list_of_words[random_num];
+        char *word = words[random_num];
+        char letter[2];
+        int length = strlen(list_of_words[random_num]);
+        char wordadvancement[length]; //creates a lists that will start empty and gradually fill with letters
+        bool foundletters[length];//tells if the letter related to a given index is found
+
         for (int i = 0; i < length; i++) 
         {
-            if (divword[i] == letter||divword[i]=='\0') 
-            {
-                foundletters[i] = true;
-                foundthisturn = true;
-            }
+            foundletters[i] = false;
         }
-        if (foundthisturn == false)
+        while (foundword == false && lives > 0) 
         {
-            lives = lives-1;
+            system("clear");
+            //the advancement is always recalculated
+            for (int i = 0; i < length; i++) 
+            {
+                if (foundletters[i] == true)
+                {
+                    wordadvancement[i] = divword[i];
+                }
+                else if (foundletters[i] == false)
+                {
+                    wordadvancement[i] = '_';
+                }
+            }
+            //this loops until either the word is found or lives have ran out
+            printf("%s \nLettres mises: %s\nInsérez une lettre: ", wordadvancement, list_of_found_letters);
+            scanf("%1s", &letter);
+            for (int i = 0; i < length; i++) 
+            {
+                if (divword[i] == letter||divword[i]=='\0') 
+                {
+                    foundletters[i] = true;
+                    foundthisturn = true;
+                }
+            }
+            if (foundthisturn == false)
+            {
+                lives = lives-1;
+                strcat(*list_of_found_letters, letter);
+            }
+            foundword=true;
+            for(int i=0; i<length; i++)
+            {
+                if (foundletters[i] == false)
+                {
+                    foundword=false;
+                }
+            }
+            foundthisturn=false;
         }
-        // printf("etape 1");
-        //the advancement is always recalculated
-        for (int i = 0; i < length; i++) 
+        system("clear");
+        if (lives <= 0)
         {
-            if (foundletters[i] == true)
-            {
-                wordadvancement[i] = divword[i];
-            }
-            else if (foundletters[i] == false)
-            {
-                wordadvancement[i] = '_';
-            }
+            printf("Vous avez perdu, le mot était %s", word);
         }
-        // printf("etape 2");
-        foundword=true;
-        for(int i=0; i<length; i++)
+        else
         {
-            if (foundletters[i] == false)
-            {
-                foundword=false;
-            }
+            printf("Bravo vous avez gagné! Le mot était bien %s", word);
         }
-
-        // printf("etape 3");
-        foundthisturn=false;
-        // printf("end turn");
+        char relaunched;
+        printf(" Voulez vous recommencer?\nY ou N: ");
+        scanf("%s", &relaunched);
+        printf("%c", relaunched);
+        if(relaunched=='y'||relaunched=='Y')
+        {
+            play = true;
+        }
+        else{
+            play = false;
+        }
     }
 
-    // printf("fin de la boucle");
-    if (lives <= 0)
-    {
-        printf("Vous avez perdu");
-    }
-    else
-    {
-        printf("Bravo vous avez gagné");
-    }
+    system("clear");
+    printf("Merci d'avoir joué :)\n");
  
 return 0;
 }
