@@ -7,18 +7,16 @@
 int main() {
     int lives;
     bool foundword, foundthisturn, play = true;
-
-    char* words[15] = {"tissu", "tranche", "grele", "masse", "dessin", "portable", "trompette", "page", "fourmi", "cartouche", "pain"};
+    char* words[] = {"tissu", "tranche", "grele", "masse", "dessin", "portable", "trompette", "page", "fourmi", "cartouche", "pain"};
 
     while(play == true)
     {
         foundword = false;
         lives = 7;
-        char list_of_found_letters[7] = "";
+        char list_of_found_letters[] = "";
 
-        int random_num;
         srand(time(NULL)); // random number
-        random_num = rand() % 11; // generate a random number between 0 and 10
+        int random_num = rand() % 11;
         char *word = words[random_num];
         char letter, comparedletter;
         int length = strlen(words[random_num]);
@@ -39,16 +37,19 @@ int main() {
             {
                 if (foundletters[i] == true)
                 {
-                    wordadvancement[i] = word[i];
+                    // wordadvancement[i] = word[i];
+                    printf("%c", word[i]);
                 }
                 else
                 {
-                    wordadvancement[i] = '_';
+                    //wordadvancement[i] = '_';
+                    printf("%c", '_');
                 }
             }
 
             //this loops until either the word is found or lives have ran out
-            printf("%s \nLettres mises: %s\nInsérez une lettre: ", wordadvancement, list_of_found_letters);
+            printf("\nLettres mises: %s\nInsérez une lettre: ", list_of_found_letters);
+            printf("comment ça mon keuf");
             scanf("%c", &letter);
 
             foundthisturn=false;
@@ -65,13 +66,12 @@ int main() {
             if (foundthisturn == false)
             {
                 lives = lives-1;
-                char* temptext = 
-                strcat(list_of_found_letters, letter);
+                list_of_found_letters[7-lives]=letter;
             }
             
-            foundword=true;
             for(int i=0; i<length; i++)
             {
+                foundword=true;
                 if (foundletters[i] == false)
                 {
                     foundword=false;
@@ -92,7 +92,7 @@ int main() {
         printf(" Voulez vous recommencer?\nY ou N: ");
         scanf("%c", &relaunched);
         printf("%c", relaunched);
-        if(relaunched=='y'||relaunched=='Y')
+        if(relaunched== 'y' || relaunched == 'Y')
         {
             play = true;
         }
