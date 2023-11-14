@@ -49,8 +49,7 @@ int main() {
 
             //this loops until either the word is found or lives have ran out
             printf("\nLettres mises: %s\nInsérez une lettre: ", list_of_found_letters);
-            printf("comment ça mon keuf");
-            scanf("%c", &letter);
+            scanf(" %1c", &letter);
 
             foundthisturn=false;
             for (int i = 0; i < length; i++) 
@@ -88,11 +87,10 @@ int main() {
         {
             printf("Bravo vous avez gagné! Le mot était bien %s", word);
         }
-        char relaunched;
         printf(" Voulez vous recommencer?\nY ou N: ");
-        scanf("%c", &relaunched);
-        printf("%c", relaunched);
-        if(relaunched== 'y' || relaunched == 'Y')
+        scanf("%1c", &letter);
+        printf("%c", letter);
+        if(letter== 'y' || letter == 'Y')
         {
             play = true;
         }
